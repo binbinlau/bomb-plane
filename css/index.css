@@ -1,0 +1,39 @@
+div {
+    border: 1px;
+}
+#container {
+    display: block;
+    margin: auto;
+    height: 960px;
+}
+#header {
+    background: aliceblue;
+    height: 100px;
+}
+#content {
+    background: beige;
+    display: inline;
+}
+#footer {
+    background: bisque;
+    height: 150px;
+}
+
+#contentLeft {
+    width: 20%;
+    height: 600px;
+    background: aqua;
+    float: left;
+}
+#contentCenter {
+    width: 60%;
+    height: 600px;
+    background: blue;
+    float: left;
+}
+#contentRight {
+    width: 20%;
+    height: 600px;
+    background: blueviolet;
+    float: left;
+}
