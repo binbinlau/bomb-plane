@@ -1,3 +1,11 @@
+h1 {
+    text-align: center;
+    margin: auto;
+    padding-top: 1em;
+}
+h2 {
+    text-align: center;
+}
 div {
     border: 1px;
 }
@@ -12,28 +20,39 @@ div {
 }
 #content {
     background: beige;
-    display: inline;
+    display: inline-table;
+    
 }
 #footer {
-    background: bisque;
+    background: red;
     height: 150px;
+    margin-top: 10px;
 }
-
 #contentLeft {
     width: 20%;
-    height: 600px;
-    background: aqua;
-    float: left;
+    min-height: 600px;
+    background: rgb(255, 255, 255);
+    display: table-cell;
+    overflow: auto;
+}
+#contentLeft p {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 #contentCenter {
-    width: 60%;
-    height: 600px;
-    background: blue;
-    float: left;
+    width: 40%;
+    min-height: 600px;
+    background: rgb(143, 142, 142);
+    display: table-cell;
 }
 #contentRight {
-    width: 20%;
-    height: 600px;
+    width: 40%;
+    min-height: 600px;
     background: blueviolet;
-    float: left;
+    display: table-cell;
+}
+#mainTable {
+    border: 1px;
+    border-collapse: collapse;
+
 }
