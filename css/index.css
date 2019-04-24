@@ -1,58 +1,70 @@
-h1 {
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 100;
+}
+.container {
+    background: bisque;
+    margin: 0 auto;
+    width: 100%;
+}
+.header {
+    margin: 0 auto;
     text-align: center;
-    margin: auto;
-    padding-top: 1em;
+    height: 60px;
+    padding-top: 20px;
 }
-h2 {
-    text-align: center;
+.header h1 {
+    width: 100%;
 }
-div {
-    border: 1px;
+.content {
+    height: 600px;
+    padding-top: 20px;
 }
-#container {
-    display: block;
-    margin: auto;
-    height: 960px;
-}
-#header {
-    background: aliceblue;
-    height: 100px;
-}
-#content {
-    background: beige;
-    display: inline-table;
-    
-}
-#footer {
-    background: red;
-    height: 150px;
-    margin-top: 10px;
-}
-#contentLeft {
+.content-left {
+    float: left;
     width: 20%;
-    min-height: 600px;
-    background: rgb(255, 255, 255);
-    display: table-cell;
-    overflow: auto;
+    height: 100%;
 }
-#contentLeft p {
-    padding-left: 10px;
-    padding-right: 10px;
+.content-left .content-left-box {
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 100%;
+    border-right: 1px solid #333;
 }
-#contentCenter {
+.content-left h2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+.content-left p {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 25px;
+}
+.content-left .game-rule {
+    border: 1px solid red;
+    padding: 20px;
+}
+.container .content .content-center {
+    height: 100%;
+    background: beige;
+    float: left;
     width: 40%;
-    min-height: 600px;
-    background: rgb(143, 142, 142);
-    display: table-cell;
 }
-#contentRight {
+.container .content .content-right {
+    height: 100%;
+    float: left;
     width: 40%;
-    min-height: 600px;
-    background: blueviolet;
-    display: table-cell;
+    background: #333;
 }
-#mainTable {
-    border: 1px;
-    border-collapse: collapse;
-
+.content .content-center .button-box .button-cell {
+    width: 30px;
+    height: 30px;
+    background-color: aliceblue;
 }

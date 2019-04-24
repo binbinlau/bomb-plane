@@ -2,8 +2,9 @@
 <html lang="zh-cn">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />  
+        <meta charset="utf-8" /> 
         <!--[if lt IE 9]>
-        　　　　<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        　　<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
         <![endif]-->
 
         <script type src="https://code.jquery.com/jquery-3.4.0.js"></script>
@@ -14,39 +15,59 @@
         
         <script type="text/javascript">
             $(function(){
-                var contentCenterWidth = $("#contentCenter").width(); //计算出游戏区域的宽度
-                $("#contentCenter").attr("style", "height: " + contentCenterWidth + "px");
-            })
+               var buttonBoxWith = $(".button-box").width();
+               console.log(buttonBoxWith);
+               var buttonCellWith = Math.floor(buttonBoxWith / 11);
+               console.log(buttonCellWith);
+               var buttonCellWithCount = 11;
+               var buttonCellHeightCount = 11;
+               var buttonBoxAllButton;
+               for (let width = 0; width < buttonCellWithCount; width++) {
+                   for (let height = 0; height < buttonCellHeightCount; height++) {
+
+                   }
+               }
+                $(".button-box").append(creatButtonCell(0, 0));
+            });
+            function creatButtonCell(rowIndex, colIndex) {
+                let myButton = $('<button class="button-cell" type="button"> </button>');
+                if (rowIndex == 0) {
+                    myButton.addClass("button-row-" + rowIndex).text(rowIndex + "-" + colIndex);
+                }
+                return myButton;
+            }
         </script>
     </head>
     <body>
-        <div id="container">
-            <div id="header">
-                <h1>炸飞机游戏</h1>
-            </div>
-            <div id="content">
-                <div id="contentLeft">
+    <div class="container">
+        <div class="header">
+            <h1>炸飞机游戏</h1>
+        </div>
+        <div class="content">
+            <div class="content-left">
+                <div class="content-left-box">
                     <h2>游戏规则</h2>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个人开始炸：报告要炸取的区格的序号(如C4)，对方将自己该区格的情况报告给炸方。若那个区格没有飞机，报“空”，若
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;一个人开始炸：报告要炸取的区格的序号(如C4)，对方将自己该区格的情况报告给炸方。若那个区格没有飞机，报“空”，若
                         有飞机但不是机头，报“伤”或“中”，若是机头，报“沉”或“死”(反正就是挂掉的意思)，报完后轮到自己炸对方</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在炸的过程中，用自己另一个表格来标记自己已经炸过的区格，根据它分析对方飞机的摆放。游戏最终目的就是炸毁对方所
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;在炸的过程中，用自己另一个表格来标记自己已经炸过的区格，根据它分析对方飞机的摆放。游戏最终目的就是炸毁对方所
                         有(三个)飞机的机头。</p>
-                    <p>- 代表 空</p>
-                    <p>X 代表 伤</p>
-                    <p>O 代表 沉</p>
-                </div>
-                <div id="contentCenter">
-                    <table id="mainTable" class="gameTable">
-                        
-                    </table>
-                </div>
-                <div id="contentRight">
-                    
+                    <br/>
+                    <div class="game-rule">
+                        <p>- 代表 空</p>
+                        <p>X 代表 伤</p>
+                        <p>O 代表 沉</p>
+                    </div>
                 </div>
             </div>
-            <div id="footer">
-                <p style="text-align: center;">我是底部</p>
+            <div class="content-center">
+                <div class="button-box">
+                    <button class="button-cell button-row-0" type="button">0-0</button>
+                </div>
+            </div>
+            <div class="content-right">
+                
             </div>
         </div>
+    </div>
     </body>
 </html>
