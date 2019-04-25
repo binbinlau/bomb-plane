@@ -11,7 +11,7 @@ body {
 .container {
     background: bisque;
     margin: 0 auto;
-    width: 100%;
+    width: 80%;
 }
 .header {
     margin: 0 auto;
@@ -25,6 +25,7 @@ body {
 .content {
     height: 600px;
     padding-top: 20px;
+    z-index: 1;
 }
 .content-left {
     float: left;
@@ -60,7 +61,7 @@ body {
 .container .content .content-right {
     height: 100%;
     float: left;
-    width: 40%;
+    width: 20%;
     background: #333;
 }
 .content .content-center .button-box .button-cell {

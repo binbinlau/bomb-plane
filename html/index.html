@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />  
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />  
         <meta charset="utf-8" /> 
         <!--[if lt IE 9]>
         　　<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -16,25 +16,36 @@
         <script type="text/javascript">
             $(function(){
                var buttonBoxWith = $(".button-box").width();
-               console.log(buttonBoxWith);
-               var buttonCellWith = Math.floor(buttonBoxWith / 11);
-               console.log(buttonCellWith);
-               var buttonCellWithCount = 11;
-               var buttonCellHeightCount = 11;
-               var buttonBoxAllButton;
-               for (let width = 0; width < buttonCellWithCount; width++) {
-                   for (let height = 0; height < buttonCellHeightCount; height++) {
-
+               $(".content").attr("style", "height: " + buttonBoxWith.toString() + "px");
+               var buttonCellWith = Math.floor(buttonBoxWith / 10);
+               var buttonCellWithCount = 10;
+               var buttonCellHeightCount = 10;
+               for (let width = 1; width <= buttonCellWithCount; width++) {
+                   for (let height = 1; height <= buttonCellHeightCount; height++) {
+                        $(".button-box").append(creatButtonCell(width, height, buttonCellWith, 0));
+                        $(".button-box2").append(creatButtonCell(width, height, Math.floor(buttonCellWith / 2), 1));
+                        robotGame();
                    }
                }
-                $(".button-box").append(creatButtonCell(0, 0));
             });
-            function creatButtonCell(rowIndex, colIndex) {
+
+            /* 生成button作为飞机的背景方格 */
+            function creatButtonCell(rowIndex, colIndex, buttonCellWith, haveText) {
                 let myButton = $('<button class="button-cell" type="button"> </button>');
-                if (rowIndex == 0) {
-                    myButton.addClass("button-row-" + rowIndex).text(rowIndex + "-" + colIndex);
+                myButton.addClass("button-row-" + rowIndex);
+                myButton.addClass("button-col-" + colIndex);
+                myButton.add("title", rowIndex + "-" + colIndex);
+                myButton.attr("style", "width: " + buttonCellWith.toString() + "px;" + "height: " + buttonCellWith.toString() + "px")
+                if (parseInt(haveText) == 1) {
+                    myButton.html(String.fromCharCode(rowIndex + 64) + "" + colIndex);
                 }
                 return myButton;
+            }
+
+            function robotGame() {
+                //随机生成飞机
+                var randomX = Math.floor(Math.random() * 10) + 1;
+                var randomY = Math.floor(Math.random() * 10) + 1;
             }
         </script>
     </head>
@@ -61,11 +72,13 @@
             </div>
             <div class="content-center">
                 <div class="button-box">
-                    <button class="button-cell button-row-0" type="button">0-0</button>
+                    
                 </div>
             </div>
             <div class="content-right">
-                
+                <div class="button-box2">
+
+                </div>
             </div>
         </div>
     </div>
