@@ -42,6 +42,7 @@ footer span {
     padding-right: 10px;
 }
 .content-left-box .game-rule {
+    /* display: grid; */
     border: 2px;
     padding: 20px;
 }

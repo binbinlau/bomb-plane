@@ -57,8 +57,10 @@ body {
     line-height: 25px;
 }
 .content-left .game-rule {
-    border: 1px solid red;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-gap: 1px;
 }
 .container .content .content-center {
     height: 100%;

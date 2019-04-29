@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />  
+        <meta charset="utf-8" /> 
+        <!--[if lt IE 9]>
+        　　<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+
+        <script type src="https://code.jquery.com/jquery-3.4.0.js"></script>
+        <script src="../js/index.js"></script>
+        <link rel="stylesheet" href="../css/flex.css">
+        <style type="text/css">
+        </style>
+        <script type="text/javascript">
+            $(function(){
+                createCheese(".button-box", ".content", 0);
+                createCheese(".button-box2", ".content", 1);
+                robotGame();
+                $(window).resize(function() {
+                    
+                })
+                // $(window).resize(function() {
+                //      $(".button-box").children().remove();
+                //      $(".button-box2").children().remove();
+                //      createCheese(".button-box", ".content-center", 0);
+                //      createCheese(".button-box2", ".content-right", 1);
+                // });
+                $(".button-main").click(function(){
+                    alert(this.attt("data-rowindex-colindex"));
+                });
+            });
+            
+
+            
+            /* 人机游戏 仅仅针对 10 * 10 表格的模式; 飞机之间不能重复，也不能出格 */ 
+            function robotGame() {
+                let planeCount = 0;
+                var planeAllMap = new Map();
+                while (planeCount < 3) { // 生成三个飞机
+                    let planeMap1 = createPlane();
+                    let isretry = 0;
+                    for (let key of planeMap1.keys()) {
+                        if (planeAllMap.has(key)) { //飞机有重复的，重新生成一个飞机
+                            console.log("生成的飞机有重复格子");
+                            isretry = 1;
+                            break;
+                        }
+                    }
+                    if (isretry == 0) {
+                        planeCount++;
+                        // planeAllMap = $.extend({}, planeAllMap, planeMap1); // TODO 有待解决
+                        planeMap1.forEach(function(value, key) {
+                            planeAllMap.set(key, value);
+                        });
+                    }
+                }
+                planeAllMap.forEach(function(value, key) {
+                    console.log("key is : " + key + "  value is : " + value.toString());
+                    console.log("total map size is: " + planeAllMap.size);
+                    renderPlane(key, value.toString());
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>炸飞机游戏</h1>
+            </div>
+            <div class="menu">
+                <h2>游戏规则</h2>
+                <div class="game-rule">
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;一个人开始炸：报告要炸取的区格的序号(如C4)，对方将自己该区格的情况报告给炸方。若那个区格没有飞机,报“空”，若
+                            有飞机但不是机头，报“伤”或“中”，若是机头，报“沉”或“死”(反正就是挂掉的意思)，报完后轮到自己炸对方。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;在炸的过程中，用自己另一个表格来标记自己已经炸过的区格，根据它分析对方飞机的摆放。游戏最终目的就是炸毁对方所
+                        有(三个)飞机的机头。</p>
+                    <div class="rule-item">
+                        <p>- 代表 空</p>
+                        <p>X 代表 伤</p>
+                        <p>O 代表 沉</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="button-box">
+
+                </div>
+                <div class="button-box2">
+
+                </div>
+            </div>
+            <div class="footer">
+                <span>制作人：赚钱小分队</span>
+            </div>
+        </div>
+    </body>
+</html>
