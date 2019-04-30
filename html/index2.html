@@ -7,12 +7,15 @@
         　　<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
         <![endif]-->
 
-        <script type src="https://code.jquery.com/jquery-3.4.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+        <script src="../js/messagebox.js"></script>
         <script src="../js/index.js"></script>
         <link rel="stylesheet" href="../css/flex.css">
         <style type="text/css">
         </style>
         <script type="text/javascript">
+            var planeAllMap = new Map();
+            var findPlaneCount = 0;
             $(function(){
                 createCheese(".button-box", ".content", 0);
                 createCheese(".button-box2", ".content", 1);
@@ -26,9 +29,62 @@
                 //      createCheese(".button-box", ".content-center", 0);
                 //      createCheese(".button-box2", ".content-right", 1);
                 // });
-                $(".button-main").click(function(){
-                    alert(this.attt("data-rowindex-colindex"));
-                });
+                $(function() {
+
+                    // $(".button-main").click(function(e){
+                    //     console.log(e);
+                    //     if (e.target == e.currentTarget) {
+                    //         e.preventDefault();
+                    //         let buttonKey = e.target.dataset.rowindexColindex;
+                    //         let buttonId = "#" + e.target.id;
+                    //         console.log("buttonId : " + buttonId);
+                    //         if (planeAllMap.has(buttonKey)) {
+                    //             // 机身或者机头的位置
+                    //             if (1 == parseInt(planeAllMap.get(buttonKey))) { // 表示是机身位置
+                    //                 e.target.innerHTML = "X";
+                    //                 let buttonWidth = $(buttonId).width();
+                    //                 let buttonHeight = $(buttonId).height();
+                    //                 console.log("buttonWidth: " + buttonWidth + "  buttonHeight: " + buttonHeight);
+                    //                 // $(buttonId).html('<img src="../images/hurt.jpg" width="' + buttonWidth +'" height="' + buttonHeight + '" style="padding: 2%"> </img>')
+                    //             } else { // 表示是机头位置
+                    //                 e.target.innerHTML = "O";
+                    //             }
+                    //         } else {
+                    //             // 没有飞机的位置
+                    //             e.target.innerHTML = "-";
+                    //         }
+                    //     }
+                    // });
+                    
+                    let clickCount = 0;
+                    let timeStart = new Date();
+                    $(".button-main").click(function(){
+                        let currentTarget = $(this);
+                        let buttonKey = currentTarget.attr("data-rowindex-colindex");
+                        clickCount++; //计算总共用了多少次完成
+                        if (planeAllMap.has(buttonKey)) {
+                            // 机身或者机头的位置
+                            if (1 == parseInt(planeAllMap.get(buttonKey))) { // 表示是机身位置
+                                // currentTarget.html("X");
+                                // currentTarget.html('<img src="../images/hurt2.jpg" width="' + currentTarget.width() +'" height="' + currentTarget.height() + '" style="padding: 2%"> </img>');
+                                currentTarget.css("background", 'url(../images/hurt3.png) no-repeat');
+                                currentTarget.css("background-size", "contain");
+                            } else { // 表示是机头位置
+                                currentTarget.css("background", 'url(../images/dead.png) no-repeat');
+                                currentTarget.css("background-size", "contain");
+                                findPlaneCount++;
+                                if (findPlaneCount == 3) {
+                                    $.MsgBox.Alert("恭喜成功", "恭喜你用了 " + clickCount.toString() + " 次完成游戏！");
+                                }
+                            }
+                        } else {
+                            // 没有飞机的位置
+                            currentTarget.css("background", 'url(../images/false.png) no-repeat');
+                            currentTarget.css("background-size", "contain");
+                        }
+                    });
+
+                })
             });
             
 
@@ -36,7 +92,6 @@
             /* 人机游戏 仅仅针对 10 * 10 表格的模式; 飞机之间不能重复，也不能出格 */ 
             function robotGame() {
                 let planeCount = 0;
-                var planeAllMap = new Map();
                 while (planeCount < 3) { // 生成三个飞机
                     let planeMap1 = createPlane();
                     let isretry = 0;
@@ -55,11 +110,11 @@
                         });
                     }
                 }
-                planeAllMap.forEach(function(value, key) {
-                    console.log("key is : " + key + "  value is : " + value.toString());
-                    console.log("total map size is: " + planeAllMap.size);
-                    renderPlane(key, value.toString());
-                })
+                // planeAllMap.forEach(function(value, key) {
+                //     console.log("key is : " + key + "  value is : " + value.toString());
+                //     console.log("total map size is: " + planeAllMap.size);
+                //     renderPlane(key, value.toString());
+                // })
             }
         </script>
     </head>

@@ -17,7 +17,8 @@ function createCheese(className, parentClassName, haveText) {
                 if (height == 0) {
                     $(className).append(creatSpanCell(String.fromCharCode(width + 64)));
                 } else {
-                    $(className).append(creatButtonCell(width, height, buttonCellWith, haveText).html("1"));
+                    // $(className).append(creatButtonCell(width, height, buttonCellWith, haveText).html("1"));
+                    $(className).append(creatButtonCell(width, height, buttonCellWith, haveText).html('<span width="100%" height= "100%" style="opacity: 0;">1<span>'));
                 }
             }
         }
@@ -39,9 +40,11 @@ function clickMain() {
 
 /* 生成button作为飞机的背景方格 */
 function creatButtonCell(rowIndex, colIndex, buttonCellWith, haveText) {
-    let myButton = $('<button class="button-cell" type="button" onclick="clickMain()"> </button>');
+    let myButton = $('<button class="button-cell" type="button"> </button>');
     myButton.addClass("button-row-" + rowIndex);
     myButton.addClass("button-col-" + colIndex);
+    myButton.addClass("button-row-" + rowIndex + "-col-" + colIndex);
+    myButton.attr("id", "button-row-" + rowIndex + "-col-" + colIndex)
     myButton.attr("data-rowIndex", rowIndex);
     myButton.attr("data-colIndex", colIndex);
     myButton.attr("data-rowIndex-colIndex", getkeyForMap(rowIndex, colIndex));

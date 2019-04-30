@@ -44,6 +44,7 @@ body {
     .content .button-box .button-cell{
         width: 60px;
         height: 60px;
+        outline: none;
     }
     .content .button-box2 .button-cell{
         width: 35px;
