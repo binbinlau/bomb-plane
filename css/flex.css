@@ -1,5 +1,9 @@
 body {
-    background-image: url("../images/background2.jpg");
+    background-image: url("../images/background.jpg");
+}
+/* 对所有class为hd的元素隐藏 */
+.hd {
+    display: none; 
 }
 .container {
     display: flex;
@@ -53,6 +57,7 @@ body {
     }
     .content .button-box .span-cell{
         background-color: rgb(255, 255, 255);
+        border: 0ch;
     }
     .content .button-box2 .span-cell{
         background-color: rgb(255, 255, 255);

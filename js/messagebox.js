@@ -64,7 +64,8 @@
             padding: '20px',
             lineHeight: '20px',
             borderBottom: '1px dashed #DDD',
-            fontSize: '13px'
+            fontSize: '13px',
+            textAlign: 'center'
         });
         $("#mb_ico").css({
             display: 'block',
