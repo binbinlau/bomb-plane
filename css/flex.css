@@ -5,6 +5,10 @@ body {
 .hd {
     display: none; 
 }
+/* 对所有class为hd的元素隐藏 */
+.hd {
+    display: none; 
+}
 .container {
     display: flex;
     flex-flow: column nowrap;
