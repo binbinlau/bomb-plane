@@ -6,6 +6,8 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @return
  **/
 public class NettyClient {
+    protected final static Log logger = LogFactory.getLog(NettyClient.class);
     private static final int MAX_RETRY = 5;
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 8888;
@@ -43,15 +46,15 @@ public class NettyClient {
     private static void connect(Bootstrap bootstrap, String host, int port, int retry) {
         bootstrap.connect(host, port).addListener(future -> {
             if (future.isSuccess()) {
-                System.out.println("连接成功!");
+                logger.info("连接成功!");
             } else if (retry == 0) {
-                System.err.println("重试次数已用完，放弃连接！");
+                logger.info("重试次数已用完，放弃连接！");
             } else {
                 // 第几次重连
                 int order = (MAX_RETRY - retry) + 1;
                 // 本次重连的间隔
                 int delay = 1 << order;
-                System.err.println(new Date() + ": 连接失败，第" + order + "次重连……");
+                logger.info(new Date() + ": 连接失败，第" + order + "次重连……");
                 bootstrap.config().group().schedule(() -> connect(bootstrap, host, port, retry - 1), delay, TimeUnit.SECONDS);
             }
         });

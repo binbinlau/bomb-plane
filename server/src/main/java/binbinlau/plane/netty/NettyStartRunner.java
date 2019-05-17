@@ -26,8 +26,7 @@ public class NettyStartRunner implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        logger.debug("开始启动netty服务！");
-        System.out.println("开始启动netty项目");
+        logger.info("开始启动netty服务！");
         NettyServer.run(PORT);
     }
 }

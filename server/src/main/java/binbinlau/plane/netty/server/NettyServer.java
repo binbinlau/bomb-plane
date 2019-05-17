@@ -1,5 +1,6 @@
 package binbinlau.plane.netty.server;
 
+import binbinlau.plane.PlaneApplication;
 import binbinlau.plane.util.StringUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -7,11 +8,13 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Date;
 
 public class NettyServer {
-
+    protected final static Log logger = LogFactory.getLog(NettyServer.class);
     public static void run(int port) {
         NioEventLoopGroup boosGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -36,9 +39,9 @@ public class NettyServer {
     private static void bind(final ServerBootstrap serverBootstrap, final int port) {
         serverBootstrap.bind(port).addListener(future -> {
             if (future.isSuccess()) {
-                System.out.println(new Date() + ": 端口[" + port + "]绑定成功!");
+                logger.info(new Date() + ": 端口[" + port + "]绑定成功!");
             } else {
-                System.err.println("端口[" + port + "]绑定失败!");
+                logger.info(new Date() + "端口[" + port + "]绑定失败!");
             }
         });
     }
