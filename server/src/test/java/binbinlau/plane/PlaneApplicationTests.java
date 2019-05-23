@@ -11,7 +11,7 @@ public class PlaneApplicationTests {
 
 	@Test
 	public void contextLoads() {
-
+		System.out.println("hahahaahahha");
 	}
 
 }

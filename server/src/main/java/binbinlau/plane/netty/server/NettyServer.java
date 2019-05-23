@@ -1,6 +1,5 @@
 package binbinlau.plane.netty.server;
 
-import binbinlau.plane.PlaneApplication;
 import binbinlau.plane.util.StringUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -8,14 +7,17 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class NettyServer {
-    protected final static Log logger = LogFactory.getLog(NettyServer.class);
-    public static void run(int port) {
+    protected final static Logger logger = LoggerFactory.getLogger(NettyServer.class);
+
+    public void run(int port) {
         NioEventLoopGroup boosGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -27,7 +29,7 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new ServerHandler());
+                        ch.pipeline().addLast(new ServerHandler()); // 可以添加多个handle
                     }
                 });
         if (!StringUtil.isInteger(port)) {
@@ -36,13 +38,13 @@ public class NettyServer {
         bind(serverBootstrap, port);
     }
 
-    private static void bind(final ServerBootstrap serverBootstrap, final int port) {
-        serverBootstrap.bind(port).addListener(future -> {
+    private void bind(final ServerBootstrap serverBootstrap, final int port) {
+            serverBootstrap.bind(port).addListener(future -> {
             if (future.isSuccess()) {
-                logger.info(new Date() + ": 端口[" + port + "]绑定成功!");
-            } else {
-                logger.info(new Date() + "端口[" + port + "]绑定失败!");
-            }
+                    logger.info(new Date() + ": 端口[" + port + "]绑定成功!");
+                } else {
+                    logger.info(new Date() + "端口[" + port + "]绑定失败!");
+                }
         });
     }
 }

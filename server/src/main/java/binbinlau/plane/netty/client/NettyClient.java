@@ -23,7 +23,7 @@ public class NettyClient {
     protected final static Log logger = LogFactory.getLog(NettyClient.class);
     private static final int MAX_RETRY = 5;
     private static final String HOST = "127.0.0.1";
-    private static final int PORT = 8888;
+    private static final int PORT = 9999;
 
     public static void main(String[] args) {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -50,10 +50,9 @@ public class NettyClient {
             } else if (retry == 0) {
                 logger.info("重试次数已用完，放弃连接！");
             } else {
-                // 第几次重连
-                int order = (MAX_RETRY - retry) + 1;
-                // 本次重连的间隔
-                int delay = 1 << order;
+                int order = (MAX_RETRY - retry) + 1; // 第几次重连
+                int delay = 1 << order; // 本次重连的间隔
+                logger.info("delay is : " + delay);
                 logger.info(new Date() + ": 连接失败，第" + order + "次重连……");
                 bootstrap.config().group().schedule(() -> connect(bootstrap, host, port, retry - 1), delay, TimeUnit.SECONDS);
             }
