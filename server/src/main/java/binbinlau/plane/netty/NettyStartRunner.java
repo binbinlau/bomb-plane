@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class NettyStartRunner implements CommandLineRunner {
 
     protected final static Logger logger = LoggerFactory.getLogger(NettyServer.class);
-    @Value("${netty.port}")
+    @Value("${netty.server.port}")
     private int port;
     @Autowired
     private NettyServer nettyServer;

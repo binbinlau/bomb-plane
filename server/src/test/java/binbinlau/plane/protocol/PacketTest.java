@@ -3,7 +3,6 @@ package binbinlau.plane.protocol;
 import binbinlau.plane.netty.protocol.PacketCodeC;
 import binbinlau.plane.netty.protocol.request.LoginRequestPacket;
 import io.netty.buffer.ByteBufAllocator;
-import io.netty.buffer.Unpooled;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import org.junit.Ignore;
 import org.junit.Test;

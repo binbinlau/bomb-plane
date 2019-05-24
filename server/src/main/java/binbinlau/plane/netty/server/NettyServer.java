@@ -16,7 +16,7 @@ import java.util.Date;
 @Component
 public class NettyServer {
     protected final static Logger logger = LoggerFactory.getLogger(NettyServer.class);
-
+    
     public void run(int port) {
         NioEventLoopGroup boosGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
