@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.5.RELEASE</version>
+		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>binbinlau</groupId>
@@ -19,7 +19,7 @@
 		<netty.version>4.1.36.Final</netty.version>
 		<lombok.version>1.18.8</lombok.version>
 		<fastjson.version>1.2.29</fastjson.version>
-		<redis.version>2.1.4.RELEASE</redis.version>
+		<redis.version>2.1.8.RELEASE</redis.version>
 	</properties>
 
 	<dependencies>
