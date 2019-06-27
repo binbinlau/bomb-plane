@@ -3,9 +3,12 @@ package binbinlau.plane.redis;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -16,6 +19,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  **/
 @Configuration
 public class RedisConfig {
+
+    @Autowired
+    ClusterConfigurationProperties clusterProperties;
 
     /**
      *  配置序列化方式
@@ -41,4 +47,10 @@ public class RedisConfig {
         template.afterPropertiesSet();
         return template;
     }
+
+    @Bean
+    public RedisConnectionFactory connectionFactory() {
+        return new JedisConnectionFactory(new RedisClusterConfiguration(clusterProperties.getNodes()));
+    }
+
 }

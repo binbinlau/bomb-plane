@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.connection.RedisClusterConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -26,6 +28,10 @@ public class RedisUtilTest {
 //    private RedisTemplate<String, Object> redisTemplate;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    RedisConnectionFactory connectionFactory;
+    @Autowired
+    ClusterConfigurationProperties clusterConfigurationProperties;
 
     @Test
     public void setTest() {
@@ -51,5 +57,15 @@ public class RedisUtilTest {
     public void hasKeyTest() {
         boolean flag = redisUtil.hasKey(BaseConstKey.REDISKEY);
         logger.info(String.valueOf(flag));
+    }
+
+    @Test
+    public void clusterTest() {
+        RedisClusterConnection connection = connectionFactory.getClusterConnection();
+        if (connection != null) {
+            logger.info("cluster connection is not null !");
+        } else {
+            logger.info("cluster connection is null !");
+        }
     }
 }
