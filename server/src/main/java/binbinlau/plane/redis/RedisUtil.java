@@ -1,10 +1,10 @@
 package binbinlau.plane.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import sun.rmi.runtime.Log;
 
 import java.util.List;
 import java.util.Map;

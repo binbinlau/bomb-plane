@@ -3,12 +3,16 @@ package binbinlau.plane.redis;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
+import org.springframework.data.redis.connection.RedisConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -20,15 +24,31 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
+    Logger logger = LoggerFactory.getLogger(RedisConfig.class);
+
+//    @Autowired
+//    ClusterConfigurationProperties clusterProperties;
+//
+//    @Bean
+//    public RedisConnectionFactory connectionFactory() {
+//        logger.info(clusterProperties.getNodes().toString());
+//        return new JedisConnectionFactory(new RedisClusterConfiguration(clusterProperties.getNodes()));
+//    }
     @Autowired
-    ClusterConfigurationProperties clusterProperties;
+    StandaloneConfigurationProperties standaloneConfigurationProperties;
+
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+        return new LettuceConnectionFactory(standaloneConfigurationProperties.getHost(), standaloneConfigurationProperties.getPort());
+    }
 
     /**
-     *  配置序列化方式
+     * 配置序列化方式
+     *
+     * @return org.springframework.data.redis.core.RedisTemplate<java.lang.String , java.lang.Object>
      * @Author LiuBin
      * @Date 2019/5/28  18:06
      * @Param [factory]
-     * @return org.springframework.data.redis.core.RedisTemplate<java.lang.String,java.lang.Object>
      **/
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
@@ -47,10 +67,4 @@ public class RedisConfig {
         template.afterPropertiesSet();
         return template;
     }
-
-    @Bean
-    public RedisConnectionFactory connectionFactory() {
-        return new JedisConnectionFactory(new RedisClusterConfiguration(clusterProperties.getNodes()));
-    }
-
 }
