@@ -1,7 +1,6 @@
 package binbinlau.plane.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -20,6 +19,17 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtil {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
+    /**
+     *  获取 redisTemplate
+     * @Author LiuBin
+     * @Date 2019/7/3  16:42
+     * @Param []
+     * @return org.springframework.data.redis.core.RedisTemplate<java.lang.String,java.lang.Object>
+     **/
+    public RedisTemplate<String, Object> getRedisTemplate() {
+        return this.redisTemplate;
+    }
 
     /**
      *  指定缓存失效时间
