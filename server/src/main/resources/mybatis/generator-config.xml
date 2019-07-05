@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--参数配置-->
+    <properties resource="mybatis/generator.properties"/>
+    <!--驱动jar-->
+    <!--在pom文件中添加 mysql-connector-java 的依赖可以不用此配置-->
+    <!--<classPathEntry location="${classPathEntry}"/>-->
+
+    <context id="MybatisTables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userId}" password="${password}"></jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="${modelTargetPackage}" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+            <!--设置父类-->
+            <!--<property name="rootClass" value="binbinlau.plane.xo.entity.baseEntity"/>-->
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="${sqlMapTargetPackage}" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="${javaClientTargetPackage}" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 指定在数据库中已经存在的表名 -->
+        <!--<table schema="${schema}" tableName="${tableName}" domainObjectName="${domainObjectName}"></table>-->
+        <table schema="" tableName="message" domainObjectName="Message" delimitAllColumns="true" delimitIdentifiers="true"></table>
+
+    </context>
+</generatorConfiguration>

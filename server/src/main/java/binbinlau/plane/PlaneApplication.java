@@ -2,6 +2,7 @@ package binbinlau.plane;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
-//@EnableAutoConfiguration
+@EnableAutoConfiguration
 @Configuration
 @ComponentScan("binbinlau.plane")
+@MapperScan("binbinlau.plane.xo.dao")
 public class PlaneApplication {
 
 	protected final static Log logger = LogFactory.getLog(PlaneApplication.class);

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -31,8 +32,8 @@ public class RedisConfig {
     ClusterConfigurationProperties clusterProperties;
     @Autowired
     PoolConfigurationProperties poolConfigurationProperties;
-//    @Autowired
-//    StandaloneConfigurationProperties standaloneConfigurationProperties;
+    @Autowired
+    StandaloneConfigurationProperties standaloneConfigurationProperties;
 
 //    @Bean
     public LettucePoolingClientConfiguration getLettucPoolConfig() {
@@ -59,22 +60,22 @@ public class RedisConfig {
 //        return jedisPoolConfig;
 //    }
 
-//    @Bean
-//    public RedisConnectionFactory redisConnectionFactory() {
-//        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(standaloneConfigurationProperties.getHost(),
-//                standaloneConfigurationProperties.getPort());
-////        return new JedisConnectionFactory(redisStandaloneConfiguration); // 使用 jedis
-//        return new LettuceConnectionFactory(redisStandaloneConfiguration); // 使用 lettuce
-//    }
-
     @Bean
-    public RedisConnectionFactory connectionFactory() {
-        logger.info(clusterProperties.getNodes().toString());
-        RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration(clusterProperties.getNodes());
-        redisClusterConfiguration.setMaxRedirects(clusterProperties.getMaxRedirects());
-//        return new JedisConnectionFactory(redisClusterConfiguration, getJedisPoolConfig()); // 使用 jedis
-        return new LettuceConnectionFactory(redisClusterConfiguration, getLettucPoolConfig()); // 使用 lettuce
+    public RedisConnectionFactory redisConnectionFactory() {
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(standaloneConfigurationProperties.getHost(),
+                standaloneConfigurationProperties.getPort());
+//        return new JedisConnectionFactory(redisStandaloneConfiguration); // 使用 jedis
+        return new LettuceConnectionFactory(redisStandaloneConfiguration); // 使用 lettuce
     }
+
+//    @Bean
+//    public RedisConnectionFactory connectionFactory() {
+//        logger.info(clusterProperties.getNodes().toString());
+//        RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration(clusterProperties.getNodes());
+//        redisClusterConfiguration.setMaxRedirects(clusterProperties.getMaxRedirects());
+////        return new JedisConnectionFactory(redisClusterConfiguration, getJedisPoolConfig()); // 使用 jedis
+//        return new LettuceConnectionFactory(redisClusterConfiguration, getLettucPoolConfig()); // 使用 lettuce
+//    }
 
     /**
      * 配置序列化方式

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="binbinlau.plane.xo.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="binbinlau.plane.xo.entity.Message">
+    <id column="uid" jdbcType="CHAR" property="uid" />
+    <result column="fromuseruid" jdbcType="CHAR" property="fromuseruid" />
+    <result column="fromuseroid" jdbcType="INTEGER" property="fromuseroid" />
+    <result column="fromusername" jdbcType="VARCHAR" property="fromusername" />
+    <result column="touseruid" jdbcType="VARCHAR" property="touseruid" />
+    <result column="touseroid" jdbcType="INTEGER" property="touseroid" />
+    <result column="tousername" jdbcType="VARCHAR" property="tousername" />
+    <result column="useravatar" jdbcType="VARCHAR" property="useravatar" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="href" jdbcType="VARCHAR" property="href" />
+    <result column="state" jdbcType="BIT" property="state" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="site" jdbcType="BIT" property="site" />
+    <result column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="data" jdbcType="VARCHAR" property="data" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `uid`, `fromuseruid`, `fromuseroid`, `fromusername`, `touseruid`, `touseroid`, `tousername`, 
+    `useravatar`, `title`, `content`, `href`, `state`, `type`, `site`, `sn`, `data`, 
+    `status`, `createtime`, `updatetime`
+  </sql>
+  <select id="selectByExample" parameterType="binbinlau.plane.xo.entity.MessageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `message`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `message`
+    where `uid` = #{uid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from `message`
+    where `uid` = #{uid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="binbinlau.plane.xo.entity.MessageExample">
+    delete from `message`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="binbinlau.plane.xo.entity.Message">
+    insert into `message` (`uid`, `fromuseruid`, `fromuseroid`, 
+      `fromusername`, `touseruid`, `touseroid`, 
+      `tousername`, `useravatar`, `title`, 
+      `content`, `href`, `state`, `type`, 
+      `site`, `sn`, `data`, `status`, 
+      `createtime`, `updatetime`)
+    values (#{uid,jdbcType=CHAR}, #{fromuseruid,jdbcType=CHAR}, #{fromuseroid,jdbcType=INTEGER}, 
+      #{fromusername,jdbcType=VARCHAR}, #{touseruid,jdbcType=VARCHAR}, #{touseroid,jdbcType=INTEGER}, 
+      #{tousername,jdbcType=VARCHAR}, #{useravatar,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, #{type,jdbcType=BIT}, 
+      #{site,jdbcType=BIT}, #{sn,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="binbinlau.plane.xo.entity.Message">
+    insert into `message`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="fromuseruid != null">
+        `fromuseruid`,
+      </if>
+      <if test="fromuseroid != null">
+        `fromuseroid`,
+      </if>
+      <if test="fromusername != null">
+        `fromusername`,
+      </if>
+      <if test="touseruid != null">
+        `touseruid`,
+      </if>
+      <if test="touseroid != null">
+        `touseroid`,
+      </if>
+      <if test="tousername != null">
+        `tousername`,
+      </if>
+      <if test="useravatar != null">
+        `useravatar`,
+      </if>
+      <if test="title != null">
+        `title`,
+      </if>
+      <if test="content != null">
+        `content`,
+      </if>
+      <if test="href != null">
+        `href`,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="site != null">
+        `site`,
+      </if>
+      <if test="sn != null">
+        `sn`,
+      </if>
+      <if test="data != null">
+        `data`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createtime != null">
+        `createtime`,
+      </if>
+      <if test="updatetime != null">
+        `updatetime`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=CHAR},
+      </if>
+      <if test="fromuseruid != null">
+        #{fromuseruid,jdbcType=CHAR},
+      </if>
+      <if test="fromuseroid != null">
+        #{fromuseroid,jdbcType=INTEGER},
+      </if>
+      <if test="fromusername != null">
+        #{fromusername,jdbcType=VARCHAR},
+      </if>
+      <if test="touseruid != null">
+        #{touseruid,jdbcType=VARCHAR},
+      </if>
+      <if test="touseroid != null">
+        #{touseroid,jdbcType=INTEGER},
+      </if>
+      <if test="tousername != null">
+        #{tousername,jdbcType=VARCHAR},
+      </if>
+      <if test="useravatar != null">
+        #{useravatar,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null">
+        #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=BIT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="site != null">
+        #{site,jdbcType=BIT},
+      </if>
+      <if test="sn != null">
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="binbinlau.plane.xo.entity.MessageExample" resultType="java.lang.Long">
+    select count(*) from `message`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `message`
+    <set>
+      <if test="record.uid != null">
+        `uid` = #{record.uid,jdbcType=CHAR},
+      </if>
+      <if test="record.fromuseruid != null">
+        `fromuseruid` = #{record.fromuseruid,jdbcType=CHAR},
+      </if>
+      <if test="record.fromuseroid != null">
+        `fromuseroid` = #{record.fromuseroid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fromusername != null">
+        `fromusername` = #{record.fromusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.touseruid != null">
+        `touseruid` = #{record.touseruid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.touseroid != null">
+        `touseroid` = #{record.touseroid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tousername != null">
+        `tousername` = #{record.tousername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useravatar != null">
+        `useravatar` = #{record.useravatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        `title` = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        `content` = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.href != null">
+        `href` = #{record.href,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        `state` = #{record.state,jdbcType=BIT},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.site != null">
+        `site` = #{record.site,jdbcType=BIT},
+      </if>
+      <if test="record.sn != null">
+        `sn` = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.data != null">
+        `data` = #{record.data,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.createtime != null">
+        `createtime` = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null">
+        `updatetime` = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `message`
+    set `uid` = #{record.uid,jdbcType=CHAR},
+      `fromuseruid` = #{record.fromuseruid,jdbcType=CHAR},
+      `fromuseroid` = #{record.fromuseroid,jdbcType=INTEGER},
+      `fromusername` = #{record.fromusername,jdbcType=VARCHAR},
+      `touseruid` = #{record.touseruid,jdbcType=VARCHAR},
+      `touseroid` = #{record.touseroid,jdbcType=INTEGER},
+      `tousername` = #{record.tousername,jdbcType=VARCHAR},
+      `useravatar` = #{record.useravatar,jdbcType=VARCHAR},
+      `title` = #{record.title,jdbcType=VARCHAR},
+      `content` = #{record.content,jdbcType=VARCHAR},
+      `href` = #{record.href,jdbcType=VARCHAR},
+      `state` = #{record.state,jdbcType=BIT},
+      `type` = #{record.type,jdbcType=BIT},
+      `site` = #{record.site,jdbcType=BIT},
+      `sn` = #{record.sn,jdbcType=VARCHAR},
+      `data` = #{record.data,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=BIT},
+      `createtime` = #{record.createtime,jdbcType=TIMESTAMP},
+      `updatetime` = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="binbinlau.plane.xo.entity.Message">
+    update `message`
+    <set>
+      <if test="fromuseruid != null">
+        `fromuseruid` = #{fromuseruid,jdbcType=CHAR},
+      </if>
+      <if test="fromuseroid != null">
+        `fromuseroid` = #{fromuseroid,jdbcType=INTEGER},
+      </if>
+      <if test="fromusername != null">
+        `fromusername` = #{fromusername,jdbcType=VARCHAR},
+      </if>
+      <if test="touseruid != null">
+        `touseruid` = #{touseruid,jdbcType=VARCHAR},
+      </if>
+      <if test="touseroid != null">
+        `touseroid` = #{touseroid,jdbcType=INTEGER},
+      </if>
+      <if test="tousername != null">
+        `tousername` = #{tousername,jdbcType=VARCHAR},
+      </if>
+      <if test="useravatar != null">
+        `useravatar` = #{useravatar,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        `title` = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        `content` = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null">
+        `href` = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=BIT},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=BIT},
+      </if>
+      <if test="site != null">
+        `site` = #{site,jdbcType=BIT},
+      </if>
+      <if test="sn != null">
+        `sn` = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        `data` = #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=BIT},
+      </if>
+      <if test="createtime != null">
+        `createtime` = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        `updatetime` = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `uid` = #{uid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="binbinlau.plane.xo.entity.Message">
+    update `message`
+    set `fromuseruid` = #{fromuseruid,jdbcType=CHAR},
+      `fromuseroid` = #{fromuseroid,jdbcType=INTEGER},
+      `fromusername` = #{fromusername,jdbcType=VARCHAR},
+      `touseruid` = #{touseruid,jdbcType=VARCHAR},
+      `touseroid` = #{touseroid,jdbcType=INTEGER},
+      `tousername` = #{tousername,jdbcType=VARCHAR},
+      `useravatar` = #{useravatar,jdbcType=VARCHAR},
+      `title` = #{title,jdbcType=VARCHAR},
+      `content` = #{content,jdbcType=VARCHAR},
+      `href` = #{href,jdbcType=VARCHAR},
+      `state` = #{state,jdbcType=BIT},
+      `type` = #{type,jdbcType=BIT},
+      `site` = #{site,jdbcType=BIT},
+      `sn` = #{sn,jdbcType=VARCHAR},
+      `data` = #{data,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=BIT},
+      `createtime` = #{createtime,jdbcType=TIMESTAMP},
+      `updatetime` = #{updatetime,jdbcType=TIMESTAMP}
+    where `uid` = #{uid,jdbcType=CHAR}
+  </update>
+</mapper>

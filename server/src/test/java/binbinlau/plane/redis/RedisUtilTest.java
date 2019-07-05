@@ -1,9 +1,7 @@
 package binbinlau.plane.redis;
 
 import binbinlau.plane.constkey.BaseConstKey;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -54,7 +52,7 @@ public class RedisUtilTest {
         logger.info(String.valueOf(flag));
     }
 
-    @After
+    @Test
     public void delKeyTest() {
         redisUtil.del(BaseConstKey.REDISKEY);
         Assert.assertTrue(!redisUtil.hasKey(BaseConstKey.REDISKEY));
