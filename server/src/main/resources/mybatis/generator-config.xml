@@ -18,8 +18,9 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
 
-        <commentGenerator>
+        <commentGenerator type="binbinlau.plane.mybatis.MyCommentGenerator">
             <property name="suppressAllComments" value="true"/>
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
 
         <jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userId}" password="${password}"></jdbcConnection>
@@ -45,7 +46,12 @@
 
         <!-- 指定在数据库中已经存在的表名 -->
         <!--<table schema="${schema}" tableName="${tableName}" domainObjectName="${domainObjectName}"></table>-->
-        <table schema="" tableName="message" domainObjectName="Message" delimitAllColumns="true" delimitIdentifiers="true"></table>
+        <table schema="" tableName="message" domainObjectName="Message" delimitAllColumns="true" delimitIdentifiers="true"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="status" javaType="EStatus" jdbcType="TINYINT(1)" typeHandler="" /> <!--处理枚举类-->
+        </table>
 
     </context>
 </generatorConfiguration>
