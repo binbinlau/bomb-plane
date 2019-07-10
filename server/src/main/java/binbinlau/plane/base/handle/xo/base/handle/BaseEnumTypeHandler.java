@@ -31,7 +31,7 @@ public class BaseEnumTypeHandler<E extends Enum<E>> extends BaseTypeHandler<E> {
         if (jdbcType == null) {
             preparedStatement.setString(i, e.toString());
         } else {
-            preparedStatement.setObject(i, e.name(), jdbcType.TYPE_CODE);
+            preparedStatement.setObject(i, Short.parseShort(e.toString()), jdbcType.TYPE_CODE);
         }
     }
 

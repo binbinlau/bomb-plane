@@ -23,13 +23,15 @@ import java.util.List;
 public class GeneratorTest {
 
     @Test
-    @Ignore
+//    @Ignore
     public void generatorTest() {
         try {
             List<String> warnings = new ArrayList<String>();
             boolean overwrite = true;
-            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-            InputStream is = classloader.getResourceAsStream("mybatis/generator-config.xml");
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+//            ClassLoader classLoader = GeneratorTest.class.getClassLoader();
+//            System.out.println(classLoader.getResource("\"mybatis/generator-config.xml\""));
+            InputStream is = classLoader.getResourceAsStream("mybatis/generator-config.xml");
             ConfigurationParser cp = new ConfigurationParser(warnings);
             Configuration config = cp.parseConfiguration(is);
             DefaultShellCallback callback = new DefaultShellCallback(overwrite);

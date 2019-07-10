@@ -50,7 +50,7 @@
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <columnOverride column="status" javaType="EStatus" jdbcType="SMALLINT" typeHandler="" /> <!--处理枚举类-->
+            <columnOverride column="status" javaType="EStatus" jdbcType="INTEGER" typeHandler="" /> <!--处理枚举类-->
         </table>
 
     </context>
