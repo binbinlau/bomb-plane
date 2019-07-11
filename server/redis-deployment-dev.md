@@ -1,3 +1,5 @@
+######看过更大的世界后，就再也不甘心留在原地。不甘心就是动力。
+
 ###### redis 版本为5.0.5，部署在测试服务器192.168.1.126，集群部署
 docker run -d --privileged --network=host -p 7381:7381 -p 17381:17381 -v /data/env/redis-cluster/7381/db:/data/env/redis/db -v /data/env/redis-cluster/7381/redis.conf:/data/env/redis/redis.conf --name redis-7381 redis5
 docker run -d --privileged --network=host -p 7382:7382 -p 17382:17382 -v /data/env/redis-cluster/7382/db:/data/env/redis/db -v /data/env/redis-cluster/7382/redis.conf:/data/env/redis/redis.conf --name redis-7382 redis5
