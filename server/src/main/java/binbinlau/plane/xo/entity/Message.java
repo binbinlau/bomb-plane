@@ -1,5 +1,7 @@
 package binbinlau.plane.xo.entity;
 
+import binbinlau.plane.xo.enums.EStatus;
+
 import java.util.Date;
 
 public class Message {
