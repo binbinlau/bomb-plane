@@ -2,9 +2,10 @@ package binbinlau.plane.xo.entity;
 
 import binbinlau.plane.xo.enums.EStatus;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
     /**
      * 唯一ID
      */
