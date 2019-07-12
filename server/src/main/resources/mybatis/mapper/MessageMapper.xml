@@ -18,7 +18,7 @@
     <result column="site" jdbcType="BIT" property="site" />
     <result column="sn" jdbcType="VARCHAR" property="sn" />
     <result column="data" jdbcType="VARCHAR" property="data" />
-    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
   </resultMap>
@@ -48,7 +48,7 @@
       #{fromusername,jdbcType=VARCHAR}, #{touseruid,jdbcType=VARCHAR}, #{touseroid,jdbcType=INTEGER}, 
       #{tousername,jdbcType=VARCHAR}, #{useravatar,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, #{type,jdbcType=BIT}, 
-      #{site,jdbcType=BIT}, #{sn,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
+      #{site,jdbcType=BIT}, #{sn,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="binbinlau.plane.xo.entity.Message">
@@ -162,7 +162,7 @@
         #{data,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=SMALLINT},
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
@@ -221,7 +221,7 @@
         `data` = #{data,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=SMALLINT},
+        `status` = #{status,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         `createtime` = #{createtime,jdbcType=TIMESTAMP},
@@ -249,7 +249,7 @@
       `site` = #{site,jdbcType=BIT},
       `sn` = #{sn,jdbcType=VARCHAR},
       `data` = #{data,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=SMALLINT},
+      `status` = #{status,jdbcType=INTEGER},
       `createtime` = #{createtime,jdbcType=TIMESTAMP},
       `updatetime` = #{updatetime,jdbcType=TIMESTAMP}
     where `uid` = #{uid,jdbcType=CHAR}

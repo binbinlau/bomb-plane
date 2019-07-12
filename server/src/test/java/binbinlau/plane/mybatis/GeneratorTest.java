@@ -1,6 +1,5 @@
 package binbinlau.plane.mybatis;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -29,8 +28,6 @@ public class GeneratorTest {
             List<String> warnings = new ArrayList<String>();
             boolean overwrite = true;
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//            ClassLoader classLoader = GeneratorTest.class.getClassLoader();
-//            System.out.println(classLoader.getResource("\"mybatis/generator-config.xml\""));
             InputStream is = classLoader.getResourceAsStream("mybatis/generator-config.xml");
             ConfigurationParser cp = new ConfigurationParser(warnings);
             Configuration config = cp.parseConfiguration(is);

@@ -1,7 +1,5 @@
 package binbinlau.plane.mybatis;
 
-import binbinlau.plane.xo.dao.MessageMapper;
-import binbinlau.plane.xo.entity.Message;
 import binbinlau.plane.xo.enums.EStatus;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -23,29 +21,29 @@ import java.util.UUID;
 public class MariadbTest {
     Logger logger = LoggerFactory.getLogger(MariadbTest.class);
 
-    @Autowired
-    MessageMapper messageMapper;
-
-    @Test
-    @Ignore
-    public void testGet() {
-//        long count = messageMapper.selectByPrimaryKey()
-//        logger.info("message's count is : " + count);
-    }
-
-    @Test
-    public void testInsert() {
-        Message message = new Message();
-        logger.info("uid : " + UUID.randomUUID().toString().replace("-", ""));
-        message.setUid(UUID.randomUUID().toString().replace("-", ""));
-        message.setContent("222222222222222222222222222222222");
-        message.setFromuseruid("uid11111111111111111111111111111");
-        message.setFromusername("mingming");
-        message.setStatus(EStatus.init);
-        messageMapper.insert(message);
-        Message message1 = messageMapper.selectByPrimaryKey(message.getUid());
-        logger.info(message1.getStatus().toString());
-        logger.info(messageMapper.selectByPrimaryKey(message.getUid()).toString());
-    }
+//    @Autowired
+//    MessageMapper messageMapper;
+//
+//    @Test
+//    @Ignore
+//    public void testGet() {
+////        long count = messageMapper.selectByPrimaryKey()
+////        logger.info("message's count is : " + count);
+//    }
+//
+//    @Test
+//    public void testInsert() {
+//        Message message = new Message();
+//        logger.info("uid : " + UUID.randomUUID().toString().replace("-", ""));
+//        message.setUid(UUID.randomUUID().toString().replace("-", ""));
+//        message.setContent("222222222222222222222222222222222");
+//        message.setFromuseruid("uid11111111111111111111111111111");
+//        message.setFromusername("mingming");
+//        message.setStatus(EStatus.init);
+//        messageMapper.insert(message);
+//        Message message1 = messageMapper.selectByPrimaryKey(message.getUid());
+//        logger.info(message1.getStatus().toString());
+//        logger.info(messageMapper.selectByPrimaryKey(message.getUid()).toString());
+//    }
 
 }

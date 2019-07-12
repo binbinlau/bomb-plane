@@ -141,7 +141,7 @@
 				<!--</executions>-->
 				<!--<configuration>-->
 					<!--&lt;!&ndash;mybatis generator插件配置文件位置，默认值${basedir}/src/main/resources/generatorConfig.xml&ndash;&gt;-->
-					<!--<configurationFile>${basedir}/src/main/resources/mybatis/generator-config.xml</configurationFile>-->
+					<!--<configurationFile>${basedir}/src/test/resources/mybatis/generator-config.xml</configurationFile>-->
 					<!--<overwrite>true</overwrite>-->
 					<!--<verbose>true</verbose>-->
 				<!--</configuration>-->
